@@ -1,9 +1,102 @@
-<mat-card class="example-card">
-  <mat-card-header>
-  </mat-card-header>
-  <img mat-card-image src="../../../../assets/unnamed.png" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-  </mat-card-content>
-  <mat-card-actions>
-  </mat-card-actions>
-</mat-card>
+
+<div class="search">
+  <mat-form-field class="example-full-width" appearance="outline" style="width: 300px; margin-left: 20px;">
+    <mat-label>Assignee</mat-label>
+    <input type="text" matInput (input)="searchFn($event)" name="search" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of searchOptions" [value]="option.name" (click)="selectOption(option.name)">
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+<div class="forecast-table">
+  <div class="container">
+    <div class="forecast-container">
+
+      <div class="today forecast">
+
+        <div class="forecast-header" style="font-size: 20px;">
+          <div style="width: 33%; text-align: start;">
+            <span *ngIf="forecastResult?.location?.localtime">{{ getDayOfWeek(forecastResult?.location?.localtime) }}</span>
+            <span *ngIf="!forecastResult?.location?.localtime">День недели</span>
+          </div>
+
+          <div style="width: 33%; text-align: center;">
+            <span *ngIf="forecastResult?.location?.name">{{ forecastResult?.location?.name }}</span>
+            <span *ngIf="!forecastResult?.location?.name">Город</span>
+          </div>
+
+          <div style="width: 33%; text-align: end;">
+            <span *ngIf="forecastResult?.location?.localtime">{{ forecastResult?.location?.localtime | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+            <span *ngIf="!forecastResult?.location?.localtime">Дата</span>
+          </div>
+        </div>
+
+        <div class="forecast-content">
+
+
+          <div style="width: 50%;">
+            <div class="num">
+              <span *ngIf="forecastResult?.current?.temp_c" style="font-size: 90px;">{{ forecastResult?.current?.temp_c }} <sup>o</sup>C</span>
+              <span *ngIf="!forecastResult?.current?.temp_c" style="font-size: 90px;">0.0 <sup>o</sup>C</span>
+            </div>
+          </div>
+
+          <div style="width: 50%; display: flex; flex-direction: column;">
+            <div>
+              <img *ngIf="forecastResult?.current?.condition.icon" [src]="forecastResult?.current?.condition.icon" alt="" width=90>
+              <img *ngIf="!forecastResult?.current?.condition.icon" src="../../../assets/images/icons/icon-1.svg" alt="" width=90>
+              <p *ngIf="forecastResult?.current?.condition.text" style="font-size: 24px; margin-bottom: 10px;">{{ forecastResult?.current?.condition.text }}</p>
+            </div>
+
+            <div style="display: flex; justify-content: space-around;">
+              <p *ngIf="forecastResult?.current?.humidity">
+                <img src="../../../assets/images/icon-umberella.png" alt="" style="margin-right: 10px;">
+                <span style="font-size: 20px;">{{ forecastResult?.current?.humidity }}%</span>
+              </p>
+
+              <p *ngIf="forecastResult?.current?.wind_kph" >
+                <img src="../../../assets/images/icon-wind.png" alt="" style="margin-right: 10px;">
+                <span style="font-size: 20px;">{{ forecastResult?.current?.wind_kph }} км/ч</span>
+              </p>
+
+              <p *ngIf="forecastResult?.current?.wind_dir" >
+                <img src="../../../assets/images/icon-compass.png" alt="" style="margin-right: 10px;">
+                <span style="font-size: 20px;">{{ forecastResult?.current?.wind_dir }}</span>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex;">
+        <div *ngFor="let item of forecastResult?.forecast?.forecastday" style="width: 100%;">
+          <div class="forecast">
+            <div class="forecast-header" style="display: flex; justify-content: center;">
+              <div>{{ getDayOfWeek(item?.date) }}</div>
+            </div>
+            <div class="forecast-content" style="display: flex; flex-direction: column;">
+
+              <div class="forecast-icon">
+                <img *ngIf="item?.day?.condition.icon" [src]="item?.day?.condition.icon" alt="" width=70>
+                <p *ngIf="item?.day?.condition.text" style="margin-top: -7px; font-size: 14px;">{{ item?.day?.condition.text }}</p>
+              </div>
+
+              <div>
+                <span *ngIf="item?.day?.maxtemp_c">Макс: {{ item?.day?.maxtemp_c }} <sup>o</sup>C</span>
+              </div>
+
+              <div>
+                <span *ngIf="item?.day?.mintemp_c">Мин: {{ item?.day?.mintemp_c }} <sup>o</sup>C</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
