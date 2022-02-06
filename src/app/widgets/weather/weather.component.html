@@ -4,7 +4,7 @@
     <mat-label>Assignee</mat-label>
     <input type="text" matInput (input)="searchFn($event)" name="search" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of searchOptions" [value]="option.name" (click)="selectOption(option.name)">
+      <mat-option *ngFor="let option of searchOptions" [value]="option.name" (click)="selectOption(option.name, 'template')">
         {{ option.name }}
       </mat-option>
     </mat-autocomplete>
@@ -71,8 +71,28 @@
         </div>
       </div>
 
-      <div style="display: flex;">
-        <div *ngFor="let item of forecastResult?.forecast?.forecastday" style="width: 100%;">
+      <div style="display: flex; overflow-x: scroll;">
+        <div *ngFor="let item of $any(forecastResult?.forecast?.forecastday[0].hour | slice:mainHour)" style="width: 100%;">
+          <div class="forecast">
+            <div class="forecast-header" style="display: flex; justify-content: center;">
+              <div>{{ item?.time.slice(11, 16) }}</div>
+            </div>
+            <div class="forecast-content" style="display: flex; flex-direction: column;">
+
+              <div class="forecast-icon">
+                <img *ngIf="item?.condition.icon" [src]="item?.condition.icon" alt="" width=70>
+                <p *ngIf="item?.condition.text" style="margin-top: -7px; font-size: 14px;">{{ item?.condition.text }}</p>
+              </div>
+
+              <div>
+                <span *ngIf="item?.temp_c != null">{{ item?.temp_c }}<sup>o</sup>C</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- <div *ngFor="let item of forecastResult?.forecast?.forecastday" style="width: 100%;">
           <div class="forecast">
             <div class="forecast-header" style="display: flex; justify-content: center;">
               <div>{{ getDayOfWeek(item?.date) }}</div>
@@ -94,7 +114,7 @@
 
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
     </div>
