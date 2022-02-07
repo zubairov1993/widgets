@@ -1,0 +1,18 @@
+<div class="main">
+  <div class="main_wrapper" *ngFor="let item of $any(itemsHour | slice:getMainHourNumber(mainHour))">
+    <div class="main_wrapper_forecast">
+      <div class="main_wrapper_forecast-header">
+        {{ item?.time.slice(11, 16) }}
+      </div>
+      <div class="main_wrapper_forecast-content">
+        <div class="main_wrapper_forecast-content-icon">
+          <img *ngIf="item?.condition.icon" [src]="item?.condition.icon" alt="" width=70>
+          <p *ngIf="item?.condition.text">{{ item?.condition.text }}</p>
+        </div>
+        <div *ngIf="item?.temp_c != null">
+          {{ item?.temp_c }}<sup>o</sup>C
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

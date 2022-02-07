@@ -1,0 +1,62 @@
+.main {
+  display: flex;
+  overflow-x: scroll;
+
+
+  &_wrapper {
+    width: 100%;
+    min-width: 150px;
+
+    &_forecast {
+      width: 100%;
+
+      &-header {
+        background: rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        font-weight: 400;
+        display: flex;
+        justify-content: center;
+      }
+
+      &-content {
+        padding: 10px 20px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        &-icon {
+          p {
+            margin-top: -7px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #bfc1c8;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #bfc1c8;
+}
+
+
