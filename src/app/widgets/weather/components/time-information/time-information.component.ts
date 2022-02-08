@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { HourInForecastDayInterface } from '@widgets/weather/interfaces/weather.interface';
 
 @Component({
@@ -14,7 +14,7 @@ export class TimeInformationComponent {
 
   constructor() { }
 
-  getMainHourNumber(time: string): number {
+  public getMainHourNumber(time: string): number {
     return new Date(time).getHours()
   }
 

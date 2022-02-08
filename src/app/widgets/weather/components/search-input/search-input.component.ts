@@ -16,13 +16,13 @@ export class SearchInputComponent {
 
   constructor(private weatherService: WeatherService) { }
 
-  searchCity(event: any): void {
+  public searchCity(event: any): void {
     if(event.target.value.length > 2) {
       this.citySearchValues$ = this.weatherService.searchCity(event.target.value).pipe(distinctUntilChanged(), debounceTime(500))
     }
   }
 
-  getAndEmitForecast(name: string): void {
+  public getAndEmitForecast(name: string): void {
     this.newItemEvent.emit(this.weatherService.getForecast(name.toLocaleLowerCase()))
   }
 

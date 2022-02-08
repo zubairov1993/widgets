@@ -17,15 +17,15 @@ export class WeatherComponent implements OnInit {
 
   constructor(private weatherService: WeatherService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.responseForecast$ = this.weatherService.getDefaultForecast()
   }
 
-  initForecast(event: Observable<ForecastInterface>): void {
+  public onInitForecast(event: Observable<ForecastInterface>): void {
     this.responseForecast$ = event
   }
 
-  getDayOfWeek(date: string): string {
+  public getDayOfWeek(date: string): string {
     return this.days[new Date(date).getDay()]
   }
 }
