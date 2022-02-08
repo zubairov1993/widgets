@@ -15,7 +15,7 @@ export class WeatherComponent implements OnInit {
   responseForecast$: Observable<ForecastInterface>
   days: string[] = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(private readonly weatherService: WeatherService) {}
 
   public ngOnInit(): void {
     this.responseForecast$ = this.weatherService.getDefaultForecast()
