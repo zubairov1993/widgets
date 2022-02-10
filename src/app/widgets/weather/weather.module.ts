@@ -27,8 +27,7 @@ import { HeaderComponent } from "./components/header";
   ],
   exports: [
     WeatherComponent
-  ],
-  providers: [CitiesService, CurrentCityForecastService]
+  ]
 })
 
 export class WeatherModule {}

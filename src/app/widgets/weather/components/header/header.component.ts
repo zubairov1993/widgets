@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
 import { ForecastInterface } from '@widgets/weather/interfaces/weather.interface';
-import { LocalStorageService } from 'src/app/core/sevices/local-storage.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -37,5 +37,4 @@ export class HeaderComponent implements OnInit {
   public getDayOfWeek(date: string): string {
     return this.days[new Date(date).getDay()]
   }
-
 }

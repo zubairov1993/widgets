@@ -1,23 +1,35 @@
 import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
-import { Observable } from "rxjs"
+import { Observable, tap } from "rxjs"
 import { ForecastInterface } from "../interfaces/weather.interface"
+import { CurrentCityForecastState } from "../states/current-city-forecast-state.service"
+import { CurrentCityState } from "../states/current-city-state.service"
+import { ForecastApiService } from "./forecast-api.service"
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CurrentCityForecastService {
-  private readonly API_KEY = '?key=323d5cfed0fd46809ad41945220502&q='
-  private readonly domain = 'http://api.weatherapi.com/v1'
-
-  constructor(private readonly http: HttpClient) {}
-
-  getForecast(city: string): Observable<ForecastInterface> {
-    // FIXME: Move to another place
-    localStorage.setItem('defaultCity', JSON.stringify(city))
-    return this.http.get<ForecastInterface>(`${this.domain}/forecast.json${this.API_KEY}${city}&days=10&aqi=no&alerts=no&lang=ru`)
+  public get data$(): Observable<ForecastInterface> {
+    return this.forecastState.data$;
   }
 
-  getDefaultForecast(): Observable<ForecastInterface> {
-    let city = localStorage.getItem('defaultCity') ? localStorage.getItem('defaultCity') : 'kiev'
-    return this.http.get<ForecastInterface>(`${this.domain}/forecast.json${this.API_KEY}${city}&days=10&aqi=no&alerts=no&lang=ru`)
+  public get data(): ForecastInterface {
+    return this.forecastState.data;
+  }
+
+  constructor(
+    private readonly forecastApi: ForecastApiService,
+    private readonly forecastState: CurrentCityForecastState,
+    private readonly currentCityState: CurrentCityState,
+  ) {}
+
+  public update(): Observable<ForecastInterface> {
+    const city = this.currentCityState.data;
+
+    return this.forecastApi.getByCity(city)
+      .pipe(
+        tap((forecast) => this.forecastState.set(forecast))
+      )
   }
 }

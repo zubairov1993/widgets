@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { SearchInterface } from '@widgets/weather/interfaces/weather.interface'
 import { CitiesService } from '@widgets/weather/services/cities.service'
-import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } from 'rxjs'
+import { CurrentCityService } from '../../services/current-city.service'
+import { debounceTime, Observable, Subject, switchMap } from 'rxjs'
+import { CurrentCityForecastService } from '@widgets/weather/services/forecast.service'
 
 @Component({
   selector: 'app-search-input',
@@ -10,39 +12,41 @@ import { debounceTime, distinctUntilChanged, Observable, Subject, switchMap } fr
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class SearchInputComponent {
-  // FIXME: Добавить интерфейс
-  @Output() newItemEvent = new EventEmitter<string>()
-  citySearchValues$: Observable<SearchInterface[]>
+export class SearchInputComponent implements OnInit {
+  public citySearchValues$: Observable<SearchInterface[]>
 
-  // В потоке citySearchValues$ сразу должна быть логика отслеживания нажатия
-  // citySearchValues$ = this.searchKeyDown$.pipe(
-  // Затем, мы после нажатий юзаем debounceTime.
-  // Затем, switchMap'ом мы мапим проходящее событие нажатие на запрос на подгрузку айтемов.
-  // В конце получаем SearchInterface[]
-  // )
+  private readonly searchKeyDown$ = new Subject<string>()
 
-  // Example
-  private readonly searchKeyDown$ = new Subject();
+  constructor(
+    private readonly currentCityService: CurrentCityService,
+    private readonly citiesService: CitiesService,
+    private readonly currentCityForecastService: CurrentCityForecastService
+  ) {}
 
-  constructor(private citiesService: CitiesService) { }
-
-  public searchCity(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-
-    if(inputElement.value.length > 2) {
-      // this.searchKeyDown$.next(inputElement.value)
-
-      // this.citySearchValues$ = this.searchKeyDown$.pipe(
-      //   debounceTime(500),
-      //   switchMap((value: any) => this.citiesService.searchCity(value))
-      // )
-
-      this.citySearchValues$ = this.citiesService.searchCity(inputElement.value).pipe(distinctUntilChanged(), debounceTime(500))
-    }
+  public ngOnInit(): void {
+    this.initCitySearchValuesObservable()
   }
 
-  public emitCityName(name: string): void {
-    this.newItemEvent.emit(name.toLocaleLowerCase())
+  public searchCity(event: Event): void {
+    const inputElement = event.target as HTMLInputElement
+
+    this.searchKeyDown$.next(inputElement.value)
+  }
+
+  public onAutocompleteItemClick(name: string): void {
+    const cityName = name.toLocaleLowerCase();
+
+    this.currentCityService.apply(cityName);
+    // FIXME: Add unsubscribe
+    this.currentCityForecastService.update()
+      .subscribe();
+  }
+
+  private initCitySearchValuesObservable(): void {
+    this.citySearchValues$ = this.searchKeyDown$
+      .pipe(
+        debounceTime(500),
+        switchMap((searchString) => this.citiesService.searchCity(searchString))
+      )
   }
 }

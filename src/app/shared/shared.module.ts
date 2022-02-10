@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { MatCardModule } from '@angular/material/card';
-import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule }  from '@angular/material/autocomplete';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from '@angular/material/select';
@@ -14,7 +13,6 @@ import { FavoriteButtonComponent } from './favorite-button/favorite-button.compo
 @NgModule({
   imports: [
     MatCardModule,
-    HttpClientModule,
     MatAutocompleteModule,
     MatFormFieldModule,
     FormsModule,
@@ -26,7 +24,6 @@ import { FavoriteButtonComponent } from './favorite-button/favorite-button.compo
   ],
   exports: [
     MatCardModule,
-    HttpClientModule,
     MatAutocompleteModule,
     MatFormFieldModule,
     FormsModule,

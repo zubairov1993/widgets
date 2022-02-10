@@ -3,7 +3,9 @@ import { Injectable } from "@angular/core"
 import { Observable } from "rxjs"
 import { SearchInterface } from "../interfaces/weather.interface"
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CitiesService {
   private readonly API_KEY = '?key=323d5cfed0fd46809ad41945220502&q='
   private readonly domain = 'http://api.weatherapi.com/v1'

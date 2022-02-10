@@ -6,7 +6,7 @@
       <mat-option
         *ngFor="let option of citySearchValues$ | async"
         [value]="option.name"
-        (click)="emitCityName(option.name)">
+        (click)="onAutocompleteItemClick(option.name)">
         {{ option.name }}
       </mat-option>
     </mat-autocomplete>
