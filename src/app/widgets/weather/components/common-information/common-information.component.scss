@@ -1,0 +1,27 @@
+:host {
+  width: 50%;
+}
+.common-information {
+  display: flex;
+  flex-direction: column;
+
+  &-icon {
+    p {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &-data {
+    display: flex;
+    justify-content: space-around;
+
+    img {
+      margin-right: 10px;
+    }
+
+    span {
+      font-size: 20px;
+    }
+  }
+}

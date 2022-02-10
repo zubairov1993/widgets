@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { WeatherService } from '@widgets/weather/services/weather.service';
-import { Observable } from 'rxjs';
-import { ForecastInterface } from './interfaces/weather.interface';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { Observable } from 'rxjs'
+import { ForecastInterface } from './interfaces/weather.interface'
+import { CurrentCityForecastService } from './services/forecast.service'
 
 @Component({
   selector: 'app-weather',
@@ -12,20 +12,15 @@ import { ForecastInterface } from './interfaces/weather.interface';
 
 export class WeatherComponent implements OnInit {
 
-  responseForecast$: Observable<ForecastInterface>
-  days: string[] = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
+  public responseForecast$: Observable<ForecastInterface>
 
-  constructor(private readonly weatherService: WeatherService) {}
+  constructor(private readonly forecastService: CurrentCityForecastService) {}
 
   public ngOnInit(): void {
-    this.responseForecast$ = this.weatherService.getDefaultForecast()
+    this.responseForecast$ = this.forecastService.getDefaultForecast()
   }
 
-  public onInitForecast(event: Observable<ForecastInterface>): void {
-    this.responseForecast$ = event
-  }
-
-  public getDayOfWeek(date: string): string {
-    return this.days[new Date(date).getDay()]
+  public getForecast(event: string): void {
+    this.responseForecast$ = this.forecastService.getForecast(event)
   }
 }

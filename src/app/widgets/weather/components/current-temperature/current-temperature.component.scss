@@ -1,0 +1,16 @@
+:host {
+  width: 50%;
+}
+.temperature {
+  span {
+    font-size: 90px;
+  }
+
+  sup {
+    top: -0.5em;
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+}

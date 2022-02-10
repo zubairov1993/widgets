@@ -1,15 +1,26 @@
 import { NgModule } from "@angular/core";
 import { SharedModule } from "@shared";
-import { WeatherService } from "@widgets/weather/services/weather.service";
 import { WeatherComponent } from "./weather.component";
-import { SearchInputComponent } from './components/search-input/search-input.component';
-import { TimeInformationComponent } from './components/time-information/time-information.component';
+import { CurrentCityForecastService } from "./services/forecast.service";
+import { CitiesService } from "./services/cities.service";
+import { PopularCitiesComponent } from "./pages/popular-cities";
+import { FeaturedCitiesComponent } from "./pages/favorites-cities";
+import { TimeInformationComponent } from "./components/time-information";
+import { CurrentTemperatureComponent } from "./components/current-temperature";
+import { CommonInformationComponent } from "./components/common-information";
+import { SearchInputComponent } from "./components/search-input";
+import { HeaderComponent } from "./components/header";
 
 @NgModule({
   declarations: [
     WeatherComponent,
     SearchInputComponent,
-    TimeInformationComponent
+    TimeInformationComponent,
+    HeaderComponent,
+    CurrentTemperatureComponent,
+    CommonInformationComponent,
+    PopularCitiesComponent,
+    FeaturedCitiesComponent
   ],
   imports: [
     SharedModule
@@ -17,7 +28,7 @@ import { TimeInformationComponent } from './components/time-information/time-inf
   exports: [
     WeatherComponent
   ],
-  providers: [WeatherService]
+  providers: [CitiesService, CurrentCityForecastService]
 })
 
 export class WeatherModule {}

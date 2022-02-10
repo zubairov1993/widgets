@@ -1,0 +1,17 @@
+<div class="main_forecast__header">
+  <div class="main_forecast__header-item main_forecast__header-item-start">
+    <span *ngIf="data?.location?.localtime">{{ getDayOfWeek(data?.location?.localtime) }}</span>
+    <span *ngIf="!data?.location?.localtime">День недели</span>
+  </div>
+
+  <div class="main_forecast__header-item main_forecast__header-item-center">
+    <span *ngIf="data?.location?.name">{{ data?.location?.name }}</span>
+    <span *ngIf="!data?.location?.name">Город</span>
+    <app-favorite-button [selected]="selectedFavoriteButton" (selectedChange)="updateFavoritesCities($event)"></app-favorite-button>
+  </div>
+
+  <div class="main_forecast__header-item main_forecast__header-item-end">
+    <span *ngIf="data?.location?.localtime">{{ data?.location?.localtime | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+    <span *ngIf="!data?.location?.localtime">Дата</span>
+  </div>
+</div>

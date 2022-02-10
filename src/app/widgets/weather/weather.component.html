@@ -4,59 +4,18 @@
 
   <div class="main_forecast">
 
-    <div class="main_forecast__header">
-      <div class="main_forecast__header-item main_forecast__header-item-start">
-        <span *ngIf="data?.location?.localtime">{{ getDayOfWeek(data?.location?.localtime) }}</span>
-        <span *ngIf="!data?.location?.localtime">День недели</span>
-      </div>
+    <app-header [data]="data"></app-header>
 
-      <div class="main_forecast__header-item main_forecast__header-item-center">
-        <span *ngIf="data?.location?.name">{{ data?.location?.name }}</span>
-        <span *ngIf="!data?.location?.name">Город</span>
-      </div>
-
-      <div class="main_forecast__header-item main_forecast__header-item-end">
-        <span *ngIf="data?.location?.localtime">{{ data?.location?.localtime | date:'dd.MM.yyyy HH:mm:ss' }}</span>
-        <span *ngIf="!data?.location?.localtime">Дата</span>
-      </div>
-    </div>
-
-    <app-search-input (newItemEvent)="onInitForecast($event)"></app-search-input>
+    <app-search-input (newItemEvent)="getForecast($event)"></app-search-input>
 
     <div class="main_forecast__content">
-      <div class="main_forecast__content-temp">
-        <span *ngIf="data?.current?.temp_c">{{ data?.current?.temp_c }} <sup>o</sup>C</span>
-        <span *ngIf="!data?.current?.temp_c">0.0 <sup>o</sup>C</span>
-      </div>
 
-      <div class="main_forecast__content-meta">
-        <div class="main_forecast__content-meta-icon">
-          <img *ngIf="data?.current?.condition?.icon" [src]="data?.current?.condition?.icon" alt="" width=90>
-          <img *ngIf="!data?.current?.condition?.icon" src="../../../assets/images/icons/icon-1.svg" alt="" width=90>
-          <p *ngIf="data?.current?.condition?.text">{{ data?.current?.condition?.text }}</p>
-        </div>
+      <app-current-temperature [data]="data"></app-current-temperature>
 
-        <div class="main_forecast__content-meta-data">
-          <p *ngIf="data?.current?.humidity">
-            <img src="../../../assets/images/icon-umberella.png" alt="">
-            <span>{{ data?.current?.humidity }}%</span>
-          </p>
+      <app-common-information [data]="data"></app-common-information>
 
-          <p *ngIf="data?.current?.wind_kph" >
-            <img src="../../../assets/images/icon-wind.png" alt="">
-            <span>{{ data?.current?.wind_kph }} км/ч</span>
-          </p>
-
-          <p *ngIf="data?.current?.wind_dir" >
-            <img src="../../../assets/images/icon-compass.png" alt="">
-            <span>{{ data?.current?.wind_dir }}</span>
-          </p>
-        </div>
-
-      </div>
     </div>
   </div>
-
 
   <app-time-information [itemsHour]="data?.forecast?.forecastday[0].hour" [mainHour]="data?.location?.localtime">
   </app-time-information>
