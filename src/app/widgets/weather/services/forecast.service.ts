@@ -11,16 +11,16 @@ import { ForecastApiService } from "./forecast-api.service"
 })
 export class CurrentCityForecastService {
   public get data$(): Observable<ForecastInterface> {
-    return this.forecastState.data$;
+    return this.currentCityForecastState.data$;
   }
 
   public get data(): ForecastInterface {
-    return this.forecastState.data;
+    return this.currentCityForecastState.data;
   }
 
   constructor(
     private readonly forecastApi: ForecastApiService,
-    private readonly forecastState: CurrentCityForecastState,
+    private readonly currentCityForecastState: CurrentCityForecastState,
     private readonly currentCityState: CurrentCityState,
   ) {}
 
@@ -29,7 +29,7 @@ export class CurrentCityForecastService {
 
     return this.forecastApi.getByCity(city)
       .pipe(
-        tap((forecast) => this.forecastState.set(forecast))
+        tap((forecast) => this.currentCityForecastState.set(forecast))
       )
   }
 }
