@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core'
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
 import { ForecastInterface } from '@widgets/weather/interfaces'
-import { LocalStorageService } from 'src/app/core/services'
+import { combineLatest, map } from 'rxjs';
+import { FavoriteCitiesService, CurrentCityService } from '../../../../services'
 
 @Component({
   selector: 'app-header',
@@ -9,55 +10,35 @@ import { LocalStorageService } from 'src/app/core/services'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
+  @Input() public data!: ForecastInterface;
 
-  @Input() data: ForecastInterface = null
+  public readonly days: string[] = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
+  
+  public readonly favoriteButtonSelectedState$ = combineLatest([
+    this.favoriteCitiesService.data$,
+    this.currentCityService.data$
+  ])
+    .pipe(
+      map(([favoriteCities, currentCity]) => favoriteCities.includes(currentCity))
+    );
 
-  days: string[] = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
-  selectedFavoriteButton: boolean = false
+  constructor(
+    private readonly favoriteCitiesService: FavoriteCitiesService,
+    private readonly currentCityService: CurrentCityService,
+  ) {}
 
-  constructor(private localStorageService: LocalStorageService) {}
+  public onFavoriteButtonSelectedChange(isSelected: boolean) {
+    const city = this.data.location.name.toLocaleLowerCase();
 
-  ngOnInit(): void {
-    this.initCity(this.data?.location?.name)
-  }
-
-  initCity(city: string): void {
-    this.selectedFavoriteButton = this.localStorageService.checkFavoriteCity(city)
-  }
-
-  updateFavoritesCities(event: any) {
-    if(event) {
-      this.localStorageService.addFavoritesCities(this.data?.location?.name)
+    if(isSelected) {
+      this.favoriteCitiesService.add(city)
     } else {
-      this.localStorageService.removeFavoritesCities(this.data?.location?.name)
+      this.favoriteCitiesService.remove(city)
     }
   }
 
   public getDayOfWeek(date: string): string {
-    this.initCity(this.data?.location?.name)
     return this.days[new Date(date).getDay()]
   }
-
-
-  // initCity(city: string): void {
-  //   this.favoritesCities = this.localStorageService.get('favoritesCities') || []
-  //   this.selectedFavoriteButton = this.favoritesCities?.includes(city.toLocaleLowerCase())
-  //   console.log('this.selectedFavoriteButton: ', this.selectedFavoriteButton);
-  // }
-
-  // updateFavoritesCities(event: any) {
-  //   if(event) {
-  //     this.favoritesCities.push(this.data?.location?.name.toLocaleLowerCase())
-  //   } else {
-  //     this.favoritesCities = this.favoritesCities.filter((favoriteCity: string) => favoriteCity != this.data?.location?.name.toLocaleLowerCase())
-  //   }
-
-  //   if(this.favoritesCities.length != 0) this.localStorageService.set('favoritesCities', this.favoritesCities)
-  // }
-
-  // public getDayOfWeek(date: string): string {
-  //   this.initCity(this.data?.location?.name)
-  //   return this.days[new Date(date).getDay()]
-  // }
 }

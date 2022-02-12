@@ -7,7 +7,11 @@
   <div class="main_forecast__header-item main_forecast__header-item-center">
     <span *ngIf="data?.location?.name">{{ data?.location?.name }}</span>
     <span *ngIf="!data?.location?.name">Город</span>
-    <app-favorite-button [selected]="selectedFavoriteButton" (selectedChange)="updateFavoritesCities($event)"></app-favorite-button>
+
+    <app-favorite-button
+      [selected]="favoriteButtonSelectedState$ | async"
+      (selectedChange)="onFavoriteButtonSelectedChange($event)">
+    </app-favorite-button>
   </div>
 
   <div class="main_forecast__header-item main_forecast__header-item-end">

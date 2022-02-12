@@ -1,4 +1,4 @@
-<div class="main" *ngFor="let data of allData">
+<div class="main" *ngFor="let data of cityForecasts$ | async">
   <div class="main_forecast">
 
     <app-header-favorite [data]="data"></app-header-favorite>

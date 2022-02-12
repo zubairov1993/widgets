@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ForecastInterface } from '@widgets/weather/interfaces';
-import { ForecastApiService } from '@widgets/weather/services';
-import { forkJoin, Observable } from 'rxjs';
-import { LocalStorageService } from 'src/app/core/services';
+import { ForecastService } from '@widgets/weather/services/forecast.service';
+import { Observable } from 'rxjs';
+import { FavoriteCitiesService } from '../../services';
 
 @Component({
   selector: 'app-favorites-cities',
@@ -12,28 +12,17 @@ import { LocalStorageService } from 'src/app/core/services';
 })
 export class FeaturedCitiesComponent implements OnInit {
   constructor(
-    private localStorageService: LocalStorageService,
-    private forecastApiService: ForecastApiService,
-    private cdr: ChangeDetectorRef
+    private readonly favoriteCitiesService: FavoriteCitiesService,
+    private readonly forecastService: ForecastService
   ) {}
 
-  allData: ForecastInterface[] = null
+  public cityForecasts$: Observable<ForecastInterface[]> = null
 
   public ngOnInit(): void {
-    this.initCities()
+    this.initCityForecasts()
   }
 
-  public initCities() {
-    let favoritesCities = this.localStorageService.get('favoritesCities') as string[]
-
-    let arrayRequest: Observable<any>[] = []
-    favoritesCities?.forEach((city: string) => {
-      arrayRequest.push(this.forecastApiService.getByCity(city))
-    })
-
-    forkJoin(arrayRequest).subscribe(val => {
-      this.allData = val
-      this.cdr.detectChanges()
-    })
+  public initCityForecasts() {
+    this.cityForecasts$ = this.forecastService.getByCities(this.favoriteCitiesService.data)
   }
 }
