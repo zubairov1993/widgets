@@ -1,6 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
-import { CurrentCityService } from './services/current-city.service';
-import { CurrentCityForecastService } from './services/forecast.service'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 
 @Component({
   selector: 'app-weather',
@@ -9,18 +7,4 @@ import { CurrentCityForecastService } from './services/forecast.service'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class WeatherComponent implements OnInit {
-  public responseForecast$ = this.forecastService.data$;
-
-  constructor(
-    private readonly currentCityService: CurrentCityService,
-    private readonly forecastService: CurrentCityForecastService
-  ) {}
-
-  public ngOnInit(): void {
-    this.currentCityService.init();
-    // FIXME: Add unsubscribe
-    this.forecastService.update()
-      .subscribe();
-  }
-}
+export class WeatherComponent {}

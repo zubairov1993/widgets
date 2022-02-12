@@ -41,6 +41,7 @@ export class LocalStorageService {
     } else {
       this.favoritesCities.push(city.toLocaleLowerCase())
     }
+
     localStorage.setItem('favoritesCities', JSON.stringify(this.favoritesCities))
   }
 

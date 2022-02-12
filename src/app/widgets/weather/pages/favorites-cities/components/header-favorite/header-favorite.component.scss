@@ -1,0 +1,28 @@
+.main_forecast__header {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  // justify-content: space-between;
+  flex-direction: column;
+  font-weight: 400;
+  font-size: 20px;
+
+  &-city {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  &-date {
+    display: flex;
+    justify-content: space-between;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 105px;
+}
+.temperature {
+  min-width: 300px;
+  span {
+    font-size: 90px;
+  }
+
+  sup {
+    top: -0.5em;
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+}

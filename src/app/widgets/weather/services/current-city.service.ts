@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { CurrentCityState } from '../states/current-city-state.service';
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
+import { LocalStorageService } from 'src/app/core/services'
+import { CurrentCityState } from '../states'
 
 @Injectable({
     providedIn: 'root'

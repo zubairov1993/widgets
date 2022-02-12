@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { ForecastInterface } from '../interfaces/weather.interface';
+import { Injectable } from '@angular/core'
+import { BehaviorSubject, Observable } from 'rxjs'
+import { ForecastInterface } from '../interfaces'
 
 @Injectable({
     providedIn: 'root'

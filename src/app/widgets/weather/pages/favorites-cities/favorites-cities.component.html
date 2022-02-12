@@ -1,1 +1,14 @@
-<p>featured-cities works!</p>
+<div class="main" *ngFor="let data of allData">
+  <div class="main_forecast">
+
+    <app-header-favorite [data]="data"></app-header-favorite>
+
+    <div class="main_forecast__content">
+
+      <app-current-temperature-favorite [data]="data"></app-current-temperature-favorite>
+
+      <app-common-information-favorite [data]="data"></app-common-information-favorite>
+
+    </div>
+  </div>
+</div>

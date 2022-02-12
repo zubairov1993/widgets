@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ForecastInterface } from '@widgets/weather/interfaces/weather.interface';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
+import { ForecastInterface } from '@widgets/weather/interfaces'
 
 @Component({
   selector: 'app-common-information',

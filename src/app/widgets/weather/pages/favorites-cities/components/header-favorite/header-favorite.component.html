@@ -1,0 +1,19 @@
+<div class="main_forecast__header">
+
+  <div class="main_forecast__header-city">
+    <span *ngIf="data?.location?.name">{{ data?.location?.name }}</span>
+    <span *ngIf="!data?.location?.name">Город</span>
+  </div>
+
+  <div class="main_forecast__header-date">
+    <div class="main_forecast__header-date-item">
+      <span *ngIf="data?.location?.localtime">{{ getDayOfWeek(data?.location?.localtime) }}</span>
+      <span *ngIf="!data?.location?.localtime">День недели</span>
+    </div>
+
+    <div class="main_forecast__header-date-item">
+      <span *ngIf="data?.location?.localtime">{{ data?.location?.localtime | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+      <span *ngIf="!data?.location?.localtime">Дата</span>
+    </div>
+  </div>
+</div>

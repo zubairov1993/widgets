@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
-import { SearchInterface } from '@widgets/weather/interfaces/weather.interface'
-import { CitiesService } from '@widgets/weather/services/cities.service'
-import { CurrentCityService } from '../../services/current-city.service'
+import { SearchInterface } from '@widgets/weather/interfaces'
+import { CitiesService, CurrentCityForecastService, CurrentCityService } from '@widgets/weather/services'
 import { debounceTime, Observable, Subject, switchMap } from 'rxjs'
-import { CurrentCityForecastService } from '@widgets/weather/services/forecast.service'
 
 @Component({
   selector: 'app-search-input',
@@ -38,8 +36,7 @@ export class SearchInputComponent implements OnInit {
 
     this.currentCityService.apply(cityName);
     // FIXME: Add unsubscribe
-    this.currentCityForecastService.update()
-      .subscribe();
+    this.currentCityForecastService.update().subscribe();
   }
 
   private initCitySearchValuesObservable(): void {

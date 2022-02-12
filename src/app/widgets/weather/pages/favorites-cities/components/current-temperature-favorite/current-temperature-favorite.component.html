@@ -1,0 +1,4 @@
+<div class="temperature">
+  <span *ngIf="data?.current?.temp_c">{{ data?.current?.temp_c }} <sup>o</sup>C</span>
+  <span *ngIf="!data?.current?.temp_c">0.0 <sup>o</sup>C</span>
+</div>

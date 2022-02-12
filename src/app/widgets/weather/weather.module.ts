@@ -1,15 +1,17 @@
-import { NgModule } from "@angular/core";
-import { SharedModule } from "@shared";
-import { WeatherComponent } from "./weather.component";
-import { CurrentCityForecastService } from "./services/forecast.service";
-import { CitiesService } from "./services/cities.service";
-import { PopularCitiesComponent } from "./pages/popular-cities";
-import { FeaturedCitiesComponent } from "./pages/favorites-cities";
-import { TimeInformationComponent } from "./components/time-information";
-import { CurrentTemperatureComponent } from "./components/current-temperature";
-import { CommonInformationComponent } from "./components/common-information";
-import { SearchInputComponent } from "./components/search-input";
-import { HeaderComponent } from "./components/header";
+import { NgModule } from "@angular/core"
+import { SharedModule } from "@shared"
+import { WeatherComponent } from "./weather.component"
+import { PopularCitiesComponent } from "./pages/popular-cities"
+import { FeaturedCitiesComponent } from "./pages/favorites-cities"
+import { CurrentCityForecastComponent } from "./pages/current-city-forecast"
+import { SearchInputComponent } from "./pages/current-city-forecast/components/search-input"
+import { TimeInformationComponent } from "./pages/current-city-forecast/components/time-information"
+import { HeaderComponent } from "./pages/current-city-forecast/components/header"
+import { CurrentTemperatureComponent } from "./pages/current-city-forecast/components/current-temperature"
+import { CommonInformationComponent } from "./pages/current-city-forecast/components/common-information"
+import { HeaderFavoriteComponent } from "./pages/favorites-cities/components/header-favorite"
+import { CurrentTemperatureFavoriteComponent } from "./pages/favorites-cities/components/current-temperature-favorite"
+import { CommonInformationFavoriteComponent } from "./pages/favorites-cities/components/common-information-favorite"
 
 @NgModule({
   declarations: [
@@ -17,10 +19,14 @@ import { HeaderComponent } from "./components/header";
     SearchInputComponent,
     TimeInformationComponent,
     HeaderComponent,
+    HeaderFavoriteComponent,
     CurrentTemperatureComponent,
+    CurrentTemperatureFavoriteComponent,
     CommonInformationComponent,
+    CommonInformationFavoriteComponent,
     PopularCitiesComponent,
-    FeaturedCitiesComponent
+    FeaturedCitiesComponent,
+    CurrentCityForecastComponent
   ],
   imports: [
     SharedModule

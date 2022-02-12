@@ -1,10 +1,8 @@
-import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 import { Observable, tap } from "rxjs"
-import { ForecastInterface } from "../interfaces/weather.interface"
-import { CurrentCityForecastState } from "../states/current-city-forecast-state.service"
-import { CurrentCityState } from "../states/current-city-state.service"
-import { ForecastApiService } from "./forecast-api.service"
+import { ForecastApiService } from "."
+import { ForecastInterface } from "../interfaces"
+import { CurrentCityForecastState, CurrentCityState } from "../states"
 
 @Injectable({
   providedIn: 'root'

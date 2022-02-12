@@ -1,0 +1,22 @@
+<div class="main" *ngIf="responseForecast$ | async as data">
+
+  <div class="main_forecast">
+
+    <app-header [data]="data"></app-header>
+
+    <app-search-input></app-search-input>
+
+    <div class="main_forecast__content">
+
+      <app-current-temperature [data]="data"></app-current-temperature>
+
+      <app-common-information [data]="data"></app-common-information>
+
+    </div>
+  </div>
+
+  <app-time-information [itemsHour]="data?.forecast?.forecastday[0].hour" [mainHour]="data?.location?.localtime">
+  </app-time-information>
+
+</div>
+
