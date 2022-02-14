@@ -7,29 +7,28 @@ import { CurrentCityState } from '../states'
     providedIn: 'root'
 })
 export class CurrentCityService {
-    public get data$(): Observable<string> {
-        return this.currentCityState.data$;
-    }
+  public get data$(): Observable<string> {
+    return this.currentCityState.data$;
+  }
 
-    public get data(): string {
-        return this.currentCityState.data;
-    }
+  public get data(): string {
+    return this.currentCityState.data;
+  }
 
-    private readonly defaultCity = 'kiev';
+  private readonly defaultCity = 'kiev';
 
-    constructor(
-        private readonly currentCityState: CurrentCityState,
-        private readonly localStorageService: LocalStorageService
-    ) {}
+  constructor(
+    private readonly currentCityState: CurrentCityState,
+    private readonly localStorageService: LocalStorageService
+  ) {}
 
-    public init(): void {
-        const city = this.localStorageService.get<string>('defaultCity') ?? this.defaultCity;
+  public init(): void {
+    const city = this.localStorageService.get<string>('defaultCity') ?? this.defaultCity;
 
-        this.currentCityState.set(city);
-    }
+    this.currentCityState.set(city);
+  }
 
-    public apply(city: string): void {
-        this.localStorageService.set('defaultCity', city);
-        this.currentCityState.set(city);
-    }
+  public apply(city: string): void {
+    this.currentCityState.set(city);
+  }
 }

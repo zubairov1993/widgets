@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core'
-import { ForecastInterface } from '@widgets/weather/interfaces'
+import { ForecastInterface } from '../../../../interfaces'
 import { LocalStorageService } from 'src/app/core/services'
 
 @Component({

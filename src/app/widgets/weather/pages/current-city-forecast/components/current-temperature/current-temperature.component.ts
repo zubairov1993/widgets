@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
-import { ForecastInterface } from '@widgets/weather/interfaces'
+import { ForecastInterface } from '../../../../interfaces'
 
 @Component({
   selector: 'app-current-temperature',

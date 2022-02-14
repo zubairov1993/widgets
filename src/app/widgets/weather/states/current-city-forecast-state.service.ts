@@ -7,16 +7,16 @@ import { ForecastInterface } from '../interfaces'
 })
 export class CurrentCityForecastState {
     public get data$(): Observable<ForecastInterface> {
-        return this._data$.asObservable();
+        return this._data$.asObservable()
     }
 
     public get data(): ForecastInterface {
-        return this._data$.getValue();
+        return this._data$.getValue()
     }
 
-    private readonly _data$ = new BehaviorSubject<ForecastInterface>(null);
+    private readonly _data$ = new BehaviorSubject<ForecastInterface>(null)
 
     public set(data: ForecastInterface): void {
-        this._data$.next(data);
+        this._data$.next(data)
     }
 }

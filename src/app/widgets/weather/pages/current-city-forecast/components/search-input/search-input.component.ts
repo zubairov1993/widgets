@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
-import { SearchInterface } from '@widgets/weather/interfaces'
-import { CitiesService, CurrentCityForecastService, CurrentCityService } from '@widgets/weather/services'
+import { SearchInterface } from '../../../../interfaces'
+import { CitiesService, CurrentCityForecastService, CurrentCityService } from '../../../../services'
 import { debounceTime, Observable, Subject, switchMap } from 'rxjs'
 
 @Component({

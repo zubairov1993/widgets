@@ -1,4 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ForecastInterface } from '../../interfaces';
+import { ForecastService, PopularCitiesService } from '../../services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-popular-cities',
@@ -6,4 +9,20 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./popular-cities.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PopularCitiesComponent {}
+export class PopularCitiesComponent {
+  constructor(
+    private readonly popularCitiesService: PopularCitiesService,
+    private readonly forecastService: ForecastService
+  ) {}
+
+  public cityForecasts$: Observable<ForecastInterface[]> = null
+
+  public ngOnInit(): void {
+    this.initCityForecasts()
+  }
+
+  public initCityForecasts() {
+    this.cityForecasts$ = this.forecastService.getByCities(this.popularCitiesService.data)
+  }
+
+}

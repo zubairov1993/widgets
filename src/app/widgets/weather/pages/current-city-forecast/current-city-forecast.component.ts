@@ -1,5 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
-import { CurrentCityForecastService, CurrentCityService, FavoriteCitiesService } from '../../services'
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core'
+import { Subscription } from 'rxjs';
+import { CurrentCityForecastService, CurrentCityService, FavoriteCitiesService, PopularCitiesService } from '../../services'
 
 @Component({
   selector: 'app-current-city-forecast',
@@ -7,20 +8,25 @@ import { CurrentCityForecastService, CurrentCityService, FavoriteCitiesService }
   styleUrls: ['./current-city-forecast.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CurrentCityForecastComponent implements OnInit {
-  public responseForecast$ = this.forecastService.data$;
+export class CurrentCityForecastComponent implements OnInit, OnDestroy {
+  public responseForecast$ = this.forecastService.data$
+  private subUpdateForecast$: Subscription
 
   constructor(
     private readonly currentCityService: CurrentCityService,
-    private readonly favoriteCitiesService: FavoriteCitiesService,
+    private readonly popularCitiesService: PopularCitiesService,
     private readonly forecastService: CurrentCityForecastService
   ) {}
 
   public ngOnInit(): void {
     this.currentCityService.init();
-    this.favoriteCitiesService.init();
+    this.popularCitiesService.init();
     // FIXME: Add unsubscribe
-    this.forecastService.update().subscribe();
+    this.subUpdateForecast$ = this.forecastService.update().subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.subUpdateForecast$.unsubscribe()
   }
 }
 

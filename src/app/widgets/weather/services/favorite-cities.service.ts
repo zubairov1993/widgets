@@ -8,11 +8,11 @@ import { FavoriteCitiesState } from '../states'
 })
 export class FavoriteCitiesService {
   public get data$(): Observable<string[]> {
-    return this.favoriteCitiesState.data$;
+    return this.favoriteCitiesState.data$
   }
 
   public get data(): string[] {
-    return this.favoriteCitiesState.data;
+    return this.favoriteCitiesState.data
   }
 
   private readonly storageKey = 'favoritesCities';

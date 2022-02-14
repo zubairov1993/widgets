@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
-import { ForecastInterface } from '@widgets/weather/interfaces'
-import { combineLatest, map } from 'rxjs';
+import { ForecastInterface } from '../../../../interfaces'
+import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { FavoriteCitiesService, CurrentCityService } from '../../../../services'
 
 @Component({
@@ -14,14 +14,15 @@ export class HeaderComponent {
   @Input() public data!: ForecastInterface;
 
   public readonly days: string[] = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
-  
-  public readonly favoriteButtonSelectedState$ = combineLatest([
-    this.favoriteCitiesService.data$,
-    this.currentCityService.data$
-  ])
-    .pipe(
-      map(([favoriteCities, currentCity]) => favoriteCities.includes(currentCity))
-    );
+
+  public readonly favoriteButtonSelectedState$ = new BehaviorSubject<boolean>(false)
+  // public readonly favoriteButtonSelectedState$ = combineLatest([
+  //   this.favoriteCitiesService.data$,
+  //   this.currentCityService.data$
+  // ])
+  //   .pipe(
+  //     map(([favoriteCities, currentCity]) => favoriteCities.includes(currentCity))
+  //   );
 
   constructor(
     private readonly favoriteCitiesService: FavoriteCitiesService,

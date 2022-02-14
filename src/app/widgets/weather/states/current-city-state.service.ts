@@ -5,17 +5,17 @@ import { BehaviorSubject, Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class CurrentCityState {
-    public get data$(): Observable<string> {
-        return this._data$.asObservable();
-    }
+  public get data$(): Observable<string> {
+    return this._data$.asObservable()
+  }
 
-    public get data(): string {
-        return this._data$.getValue();
-    }
+  public get data(): string {
+    return this._data$.getValue()
+  }
 
-    private readonly _data$ = new BehaviorSubject<string>(null);
+  private readonly _data$ = new BehaviorSubject<string>(null);
 
-    public set(data: string): void {
-        this._data$.next(data);
-    }
+  public set(data: string): void {
+    this._data$.next(data)
+  }
 }

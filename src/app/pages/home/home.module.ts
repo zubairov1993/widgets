@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { CryptocurrencyModule } from "@widgets/cryptocurrency";
-import { WeatherModule } from "src/app/widgets";
+import { WeatherModule, CryptocurrencyModule } from "src/app/widgets";
 import { SharedModule } from "../../shared/shared.module";
 import { CardComponent } from "./components";
 import { HomeComponent } from "./home.component";

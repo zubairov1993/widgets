@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
-import { HourInForecastDayInterface } from '@widgets/weather/interfaces'
+import { HourInForecastDayInterface } from '../../../../interfaces'
 
 @Component({
   selector: 'app-time-information',
