@@ -16,6 +16,10 @@
       align-items: baseline;
       padding: 10px 20px 10px;
       text-align: center;
+
+      &_item {
+        width: 50%;
+      }
     }
   }
 }

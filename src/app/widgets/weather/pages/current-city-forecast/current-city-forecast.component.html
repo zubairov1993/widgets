@@ -2,16 +2,23 @@
 
   <div class="main_forecast">
 
-    <app-header [data]="data"></app-header>
+    <app-header [data]="data">
+      <app-favorite-button
+        location-prefix
+        [selected]="favoriteButtonSelectedState$ | async"
+        (selectedChange)="onFavoriteButtonSelectedChange($event)">
+      </app-favorite-button>
+    </app-header>
 
     <app-search-input></app-search-input>
 
     <div class="main_forecast__content">
-
-      <app-current-temperature [data]="data"></app-current-temperature>
-
-      <app-common-information [data]="data"></app-common-information>
-
+      <div class="main_forecast__content_item">
+        <app-current-temperature [data]="data"></app-current-temperature>
+      </div>
+      <div class="main_forecast__content_item">
+        <app-common-information [data]="data"></app-common-information>
+      </div>
     </div>
   </div>
 

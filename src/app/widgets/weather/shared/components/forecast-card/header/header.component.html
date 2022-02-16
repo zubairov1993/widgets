@@ -7,11 +7,7 @@
     <span>{{ data.location.name }}</span>
 
     <!-- TODO: Make projection slot -->
-    <!-- <ng-content select="[location-prefix]"></ng-content> -->
-    <app-favorite-button
-      [selected]="favoriteButtonSelectedState$ | async"
-      (selectedChange)="onFavoriteButtonSelectedChange($event)">
-    </app-favorite-button>
+    <ng-content select="[location-prefix]"></ng-content>
   </div>
 
   <div class="main_forecast__header-item main_forecast__header-item-end">
