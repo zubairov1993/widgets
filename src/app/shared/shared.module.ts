@@ -9,7 +9,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
-import { FavoriteButtonComponent } from "./favorite-button";
 
 @NgModule({
   imports: [
@@ -34,11 +33,7 @@ import { FavoriteButtonComponent } from "./favorite-button";
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    FavoriteButtonComponent,
     MatTabsModule
-  ],
-  declarations: [
-    FavoriteButtonComponent
   ]
 })
 

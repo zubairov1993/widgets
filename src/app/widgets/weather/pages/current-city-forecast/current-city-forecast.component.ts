@@ -15,12 +15,14 @@ export class CurrentCityForecastComponent implements OnInit, OnDestroy {
   constructor(
     private readonly currentCityService: CurrentCityService,
     private readonly popularCitiesService: PopularCitiesService,
+    private readonly favoriteCitiesService: FavoriteCitiesService,
     private readonly forecastService: CurrentCityForecastService
   ) {}
 
   public ngOnInit(): void {
     this.currentCityService.init();
     this.popularCitiesService.init();
+    this.favoriteCitiesService.init();
     // FIXME: Add unsubscribe
     this.subUpdateForecast$ = this.forecastService.update().subscribe();
   }

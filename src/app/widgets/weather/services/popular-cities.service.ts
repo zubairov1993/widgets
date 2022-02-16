@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
-import { PopularCitiesState } from '../states/popular-cities-state.service';
-import { popularCities } from 'src/app/data/data';
+import { PopularCitiesState } from '../states';
+import { POPULAR_CITIES } from '../data';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,6 @@ export class PopularCitiesService {
   ) {}
 
   public init(): void {
-    this.popularCitiesState.set(popularCities)
+    this.popularCitiesState.set([...POPULAR_CITIES])
   }
 }

@@ -1,4 +1,4 @@
-export const popularCities: string[] = [
+export const POPULAR_CITIES: string[] = [
   'canberra',
   'riyadh',
   'tirane',

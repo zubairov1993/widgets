@@ -1,0 +1,20 @@
+<div class="main_forecast__header">
+  <div class="main_forecast__header-item main_forecast__header-item-start">
+    <span>{{ currentDayAsText }}</span>
+  </div>
+
+  <div class="main_forecast__header-item main_forecast__header-item-center">
+    <span>{{ data.location.name }}</span>
+
+    <!-- TODO: Make projection slot -->
+    <!-- <ng-content select="[location-prefix]"></ng-content> -->
+    <app-favorite-button
+      [selected]="favoriteButtonSelectedState$ | async"
+      (selectedChange)="onFavoriteButtonSelectedChange($event)">
+    </app-favorite-button>
+  </div>
+
+  <div class="main_forecast__header-item main_forecast__header-item-end">
+    <span>{{ data.location.localtime | date:'dd.MM.yyyy HH:mm:ss' }}</span>
+  </div>
+</div>

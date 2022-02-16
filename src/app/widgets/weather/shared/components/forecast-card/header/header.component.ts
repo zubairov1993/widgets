@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
+import { Component, ChangeDetectionStrategy, Input, OnChanges, SimpleChanges } from '@angular/core'
 import { ForecastInterface } from '../../../../interfaces'
-import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { FavoriteCitiesService, CurrentCityService } from '../../../../services'
 
 @Component({
@@ -10,24 +10,28 @@ import { FavoriteCitiesService, CurrentCityService } from '../../../../services'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnChanges {
   @Input() public data!: ForecastInterface;
 
+  public currentDayAsText: string;
   public readonly days: string[] = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
 
-  public readonly favoriteButtonSelectedState$ = new BehaviorSubject<boolean>(false)
-  // public readonly favoriteButtonSelectedState$ = combineLatest([
-  //   this.favoriteCitiesService.data$,
-  //   this.currentCityService.data$
-  // ])
-  //   .pipe(
-  //     map(([favoriteCities, currentCity]) => favoriteCities.includes(currentCity))
-  //   );
+  public readonly favoriteButtonSelectedState$ = combineLatest([
+    this.favoriteCitiesService.data$,
+    this.currentCityService.data$
+  ])
+    .pipe(
+      map(([favoriteCities, currentCity]) => favoriteCities.includes(currentCity))
+    );
 
   constructor(
     private readonly favoriteCitiesService: FavoriteCitiesService,
     private readonly currentCityService: CurrentCityService,
   ) {}
+
+  public ngOnChanges(): void {
+    this.currentDayAsText = this.getDayOfWeekAsText();
+  }
 
   public onFavoriteButtonSelectedChange(isSelected: boolean) {
     const city = this.data.location.name.toLocaleLowerCase();
@@ -39,7 +43,9 @@ export class HeaderComponent {
     }
   }
 
-  public getDayOfWeek(date: string): string {
-    return this.days[new Date(date).getDay()]
+  public getDayOfWeekAsText(): string {
+    const localtime = this.data.location.localtime;
+
+    return this.days[new Date(localtime).getDay()]
   }
 }
