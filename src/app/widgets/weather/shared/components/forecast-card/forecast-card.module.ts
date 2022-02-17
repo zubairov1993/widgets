@@ -3,7 +3,6 @@ import { SharedModule } from '@shared';
 import { CommonInformationComponent } from './common-information';
 import { CurrentTemperatureComponent } from './current-temperature';
 import { HeaderComponent } from './header';
-import { FavoriteButtonModule } from '../favorite-button';
 
 @NgModule({
   declarations: [
@@ -12,8 +11,7 @@ import { FavoriteButtonModule } from '../favorite-button';
     HeaderComponent
   ],
   imports: [
-    SharedModule,
-    FavoriteButtonModule
+    SharedModule
   ],
   exports: [
     CommonInformationComponent,
