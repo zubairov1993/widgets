@@ -6,8 +6,7 @@
   <div class="main_forecast__header-item main_forecast__header-item-center">
     <span>{{ data.location.name }}</span>
 
-    <!-- TODO: Make projection slot -->
-    <ng-content select="[location-prefix]"></ng-content>
+    <ng-content select="[location-suffix]"></ng-content>
   </div>
 
   <div class="main_forecast__header-item main_forecast__header-item-end">

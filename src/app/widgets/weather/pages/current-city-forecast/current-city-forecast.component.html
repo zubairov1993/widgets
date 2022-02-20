@@ -4,7 +4,7 @@
 
     <app-header [data]="data">
       <app-favorite-button
-        location-prefix
+        location-suffix
         [selected]="favoriteButtonSelectedState$ | async"
         (selectedChange)="onFavoriteButtonSelectedChange($event)">
       </app-favorite-button>
