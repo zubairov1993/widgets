@@ -1,21 +1,16 @@
 import { NgModule } from "@angular/core"
 import { SharedModule } from "@shared"
 import { WeatherComponent } from "./weather.component"
-import { FavoriteButtonModule, ForecastCardModule } from "./shared"
-import { CurrentCityForecastComponent, PopularCitiesComponent, SearchInputComponent, TimeInformationComponent } from './pages'
+import { CurrentCityForecastModule, PopularCitiesModule } from './pages'
 
 @NgModule({
   declarations: [
     WeatherComponent,
-    SearchInputComponent,
-    TimeInformationComponent,
-    PopularCitiesComponent,
-    CurrentCityForecastComponent
   ],
   imports: [
     SharedModule,
-    FavoriteButtonModule,
-    ForecastCardModule
+    CurrentCityForecastModule,
+    PopularCitiesModule
   ],
   exports: [
     WeatherComponent
