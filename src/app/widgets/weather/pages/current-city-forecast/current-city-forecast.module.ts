@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core"
 import { SharedModule } from "@shared"
-import { FavoriteButtonModule, ForecastCardModule } from "@widgets/weather/shared"
-import { CurrentCityForecastComponent, SearchInputComponent, TimeInformationComponent } from "."
+import { FavoriteButtonModule, ForecastCardModule } from "../../shared"
+import { SearchInputComponent, TimeInformationComponent } from "./components"
+import { CurrentCityForecastComponent } from "./current-city-forecast.component"
 
 @NgModule({
   declarations: [
