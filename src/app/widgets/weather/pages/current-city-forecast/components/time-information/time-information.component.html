@@ -6,10 +6,10 @@
       </div>
       <div class="main_wrapper_forecast-content">
         <div class="main_wrapper_forecast-content-icon">
-          <img *ngIf="item?.condition.icon" [src]="item?.condition.icon" alt="" width=70>
-          <p *ngIf="item?.condition.text">{{ item?.condition.text }}</p>
+          <img [src]="item?.condition.icon" alt="" width=70>
+          <p>{{ item?.condition.text }}</p>
         </div>
-        <div *ngIf="item?.temp_c != null">
+        <div>
           {{ item?.temp_c }}<sup>o</sup>C
         </div>
       </div>

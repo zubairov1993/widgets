@@ -3,9 +3,7 @@ import { Observable } from 'rxjs'
 import { PopularCitiesState } from '../states';
 import { POPULAR_CITIES } from '../data';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PopularCitiesService {
   public get data$(): Observable<string[]> {
     return this.popularCitiesState.data$

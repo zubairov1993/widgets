@@ -3,9 +3,7 @@ import { Observable } from 'rxjs'
 import { LocalStorageService } from 'src/app/core/services'
 import { CurrentCityState } from '../states'
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class CurrentCityService {
   public get data$(): Observable<string> {
     return this.currentCityState.data$;

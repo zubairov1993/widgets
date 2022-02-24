@@ -4,9 +4,7 @@ import { ForecastApiService } from "../api"
 import { ForecastInterface } from "../interfaces"
 import { CurrentCityForecastState, CurrentCityState } from "../states"
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CurrentCityForecastService {
   public get data$(): Observable<ForecastInterface> {
     return this.currentCityForecastState.data$;

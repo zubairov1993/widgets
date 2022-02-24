@@ -3,9 +3,7 @@ import { Observable } from 'rxjs'
 import { LocalStorageService } from '@core'
 import { FavoriteCitiesState } from '../states'
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class FavoriteCitiesService {
   public get data$(): Observable<string[]> {
     return this.favoriteCitiesState.data$

@@ -14,4 +14,12 @@ export class FavoriteButtonComponent {
     this.selected = !this.selected;
     this.selectedChange.emit(this.selected);
   }
+
+  public getButton(): string {
+    if (this.selected) {
+      return 'favorite'
+    } else {
+      return 'favorite_border'
+    }
+  }
 }

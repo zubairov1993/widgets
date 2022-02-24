@@ -3,9 +3,7 @@ import { catchError, EMPTY, forkJoin, Observable } from "rxjs"
 import { ForecastApiService } from "../api"
 import { ForecastInterface } from "../interfaces"
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ForecastService {
   constructor(
     private readonly forecastApi: ForecastApiService,

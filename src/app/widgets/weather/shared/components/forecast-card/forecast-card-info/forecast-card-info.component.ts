@@ -2,12 +2,11 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
 import { ForecastInterface } from '../../../../interfaces'
 
 @Component({
-  selector: 'app-current-temperature',
-  templateUrl: './current-temperature.component.html',
-  styleUrls: ['./current-temperature.component.scss'],
+  selector: 'forecast-card-info',
+  templateUrl: './forecast-card-info.component.html',
+  styleUrls: ['./forecast-card-info.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
-export class CurrentTemperatureComponent {
+export class ForecastCardInfoComponent {
   @Input() data: ForecastInterface = null
 }

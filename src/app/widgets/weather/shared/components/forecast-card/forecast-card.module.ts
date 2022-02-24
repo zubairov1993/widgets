@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
-import { CommonInformationComponent } from './common-information';
-import { CurrentTemperatureComponent } from './current-temperature';
-import { HeaderComponent } from './header';
+import { ForecastCardInfoComponent } from './forecast-card-info';
+import { ForecastCardTemperatureComponent } from './forecast-card-temperature';
+import { ForecastCardHeaderComponent } from './forecast-card-header';
 
 @NgModule({
   declarations: [
-    CommonInformationComponent,
-    CurrentTemperatureComponent,
-    HeaderComponent
+    ForecastCardInfoComponent,
+    ForecastCardTemperatureComponent,
+    ForecastCardHeaderComponent
   ],
   imports: [
     SharedModule
   ],
   exports: [
-    CommonInformationComponent,
-    CurrentTemperatureComponent,
-    HeaderComponent
+    ForecastCardInfoComponent,
+    ForecastCardTemperatureComponent,
+    ForecastCardHeaderComponent
   ]
 })
 export class ForecastCardModule {}

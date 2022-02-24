@@ -1,22 +1,21 @@
 <div class="common-information">
   <div class="common-information-icon">
-    <img *ngIf="data?.current?.condition?.icon" [src]="data?.current?.condition?.icon" alt="" width=90>
-    <img *ngIf="!data?.current?.condition?.icon" src="../../../assets/images/icons/icon-1.svg" alt="" width=90>
-    <p *ngIf="data?.current?.condition?.text">{{ data?.current?.condition?.text }}</p>
+    <img [src]="data?.current?.condition?.icon" alt="" width=90>
+    <p>{{ data?.current?.condition?.text }}</p>
   </div>
 
   <div class="common-information-data">
-    <p *ngIf="data?.current?.humidity">
+    <p>
       <img src="../../../assets/images/icon-umberella.png" alt="">
       <span>{{ data?.current?.humidity }}%</span>
     </p>
 
-    <p *ngIf="data?.current?.wind_kph" >
+    <p>
       <img src="../../../assets/images/icon-wind.png" alt="">
       <span>{{ data?.current?.wind_kph }} км/ч</span>
     </p>
 
-    <p *ngIf="data?.current?.wind_dir" >
+    <p>
       <img src="../../../assets/images/icon-compass.png" alt="">
       <span>{{ data?.current?.wind_dir }}</span>
     </p>

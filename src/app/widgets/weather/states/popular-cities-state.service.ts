@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PopularCitiesState {
   public get data$(): Observable<string[]> {
     return this._data$.asObservable()

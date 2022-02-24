@@ -1,4 +1,3 @@
 <button mat-icon-button (click)="toggleSelected()">
-  <mat-icon *ngIf="selected"> favorite </mat-icon>
-  <mat-icon *ngIf="!selected"> favorite_border </mat-icon>
+  <mat-icon> {{ getButton() }} </mat-icon>
 </button>

@@ -2,13 +2,13 @@ import { Component, ChangeDetectionStrategy, Input, OnChanges } from '@angular/c
 import { ForecastInterface } from '../../../../interfaces'
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector: 'forecast-card-header',
+  templateUrl: './forecast-card-header.component.html',
+  styleUrls: ['./forecast-card-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HeaderComponent implements OnChanges {
+export class ForecastCardHeaderComponent implements OnChanges {
   @Input() public data!: ForecastInterface;
 
   public currentDayAsText: string;

@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { ForecastInterface } from '../interfaces'
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class ForecastApiService {
   private readonly API_KEY = '?key=323d5cfed0fd46809ad41945220502&q='
   private readonly domain = 'http://api.weatherapi.com/v1'
